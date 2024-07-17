@@ -1,6 +1,22 @@
+import { Button } from "../ui/button";
 import Container from "../ui/container";
-
 import { Link } from "react-router-dom";
+
+const routes = [
+  {
+    to:"/",
+    label:"Начало"
+  },
+
+  {
+    to:"/all-sale",
+    label:"Продажби"
+  },
+  {
+    to:"/all-rents",
+    label:"Наеми"
+  },
+]
 
 export default function Header() {
   return (
@@ -13,6 +29,22 @@ export default function Header() {
                 <h1 className="text-xl font-bold">K2 Имоти</h1>
               </Link>
             </div>
+            <nav className="mx-6 flex items-center space-x-4 lg:space-x6 hidden ms:block">
+              {
+                routes.map((route,i)=>(
+                  <Button  key={i} asChild variant="ghost"> 
+                  <Link
+                  key={i}
+                  to={route.to}
+                  className="text-sm font-mediium transition-colors">
+                    {route.label}
+                  </Link>
+
+                  </Button>
+                ))
+              }
+
+            </nav>
           </div>
         </Container>
       </header>

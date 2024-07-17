@@ -1,3 +1,4 @@
+import AllPropertiesSale from "./components/allPropertiesSale/AllPropertiesSale";
 import Header from "./components/header/Header";
 import Home from "./components/home/Home";
 import { Button } from "./components/ui/button";
@@ -11,6 +12,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home/>}/>
+          <Route path="/all-sale" element={<AllPropertiesSale/>}/>
         </Routes>
       </div>
     </>
