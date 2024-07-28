@@ -13,28 +13,26 @@ import {
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 
-import "./login.mod.css";
+import "./register.mod.css";
 
 const formSchema = z
   .object({
-    email: z.string().email(),
-    password: z.string(),
+    email: z.string().email({ message: "Невалиден email" }),
+    password: z.string().min(3,{ message: "Паролата трябва да съдържа минимум 3 символа" }),
     rePassword: z.string(),
-  });
-  
+  })
 
-  //TO DO - if the user and pass don/t correspond 
-  // .refine(
-  //   (data) => {
-  //     return data.password === data.rePassword;
-  //   },
-  //   {
-  //     message: "Паролите не съвпадат",
-  //     path: ["rePassword"],
-  //   }
-  // );
+  .refine(
+    (data) => {
+      return data.password === data.rePassword;
+    },
+    {
+      message: "Паролите не съвпадат",
+      path: ["rePassword"],
+    }
+  );
 
-export default function Login() {
+export default function Register() {
   
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -92,9 +90,27 @@ export default function Login() {
             }}
           />
 
-     
+          <FormField
+            control={form.control}
+            name="rePassword"
+            render={({ field }) => {
+              return (
+                <FormItem>
+                  <FormLabel>Потвърди паролата</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Потвърди паролата"
+                      type="password"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
+          />
 
-          <Button type="submit">Вход</Button>
+          <Button type="submit">Регистрация</Button>
         </form>
       </Form>
     </Container>
