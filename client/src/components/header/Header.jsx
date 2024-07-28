@@ -13,9 +13,18 @@ const routes = [
     label:"Продажби"
   },
   {
-    to:"/all-rents",
+    to:"/all-rent",
     label:"Наеми"
   },
+  {
+    to:"/login",
+    label:"Вход"
+  },
+  {
+    to:"/register",
+    label:"Регистрация"
+  },
+  
 ]
 
 export default function Header() {
@@ -23,16 +32,18 @@ export default function Header() {
     <>
       <header className="sm:flex sm:justify-between py-3 px-4 border-b">
         <Container>
+
           <div className="relative px-4 sm:px-6 lg:px8 h16 items-center justify-between w-full">
             <div className="flex items-center">
               <Link to={"/"} className="ml-4 lg:ml-0">
                 <h1 className="text-xl font-bold">K2 Имоти</h1>
               </Link>
             </div>
-            <nav className="mx-6 flex items-center space-x-4 lg:space-x6 hidden ms:block">
+            
+            <nav className="mx-6 flex items-center space-x-4 lg:space-x6 hidden md:block">
               {
                 routes.map((route,i)=>(
-                  <Button  key={i} asChild variant="ghost"> 
+                  <Button  key={i} asChild variant="link"> 
                   <Link
                   key={i}
                   to={route.to}
