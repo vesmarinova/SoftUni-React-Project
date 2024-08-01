@@ -43,8 +43,9 @@ export default function Register() {
     },
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = (values) => {
     console.log("submit");
+    console.log(values); //get all the formData as values
   };
 
   return (
